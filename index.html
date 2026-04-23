@@ -3,148 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kenneth's Trading Drawdown Protocol</title>
+    <title>Kenneth's Drawdown Protocol</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 20px auto; padding: 20px; background-color: #f4f7f6; }
-        h1, h2, h3 { color: #2c3e50; border-bottom: 2px solid #2c3e50; padding-bottom: 5px; }
-        .container { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .meta-info { font-style: italic; color: #666; margin-bottom: 20px; }
-        
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background-color: #f8f9fa; }
-        
-        .zone-groen { background-color: #d4edda; font-weight: bold; }
-        .zone-geel { background-color: #fff3cd; font-weight: bold; }
-        .zone-rood { background-color: #f8d7da; font-weight: bold; }
-        .zone-noodstop { background-color: #721c24; color: white; font-weight: bold; }
-        
-        .rule-box { background: #e9ecef; padding: 15px; border-left: 5px solid #2c3e50; margin: 15px 0; }
-        .highlight { font-weight: bold; color: #d9534f; }
-        .status-table td:first-child { font-weight: bold; width: 40%; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.5; color: #1a1a1a; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f8f9fa; }
+        .container { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        h1 { font-size: 1.5rem; margin-bottom: 5px; color: #2c3e50; }
+        .subtitle { color: #666; font-size: 0.9rem; margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem; }
+        th, td { border: 1px solid #e0e0e0; padding: 12px 10px; text-align: left; }
+        th { background-color: #f1f3f5; font-weight: 600; }
+        .zone-groen { background-color: #e7f5ea; }
+        .zone-geel { background-color: #fff9db; }
+        .zone-rood { background-color: #fff5f5; border: 2px solid #ffc9c9; }
+        .zone-noodstop { background-color: #495057; color: white; }
+        .status-card { background: #f1f3f5; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 5px solid #fa5252; }
+        .status-card h3 { margin-top: 0; color: #fa5252; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        .highlight { font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Kenneth's Trading Drawdown Protocol [cite: 1]</h1>
-    <p class="meta-info">Versie 2.0 April 2026 | Exchange: Kraken Pro | Strategie: 5min reversal POI sweep | Asset: BTC Perp [cite: 2]</p>
-    
-    <div class="rule-box">
-        <strong>Systeemregel:</strong> Dit document bevat de harde regels voor risk management. Geen discretie. Volg het systeem. [cite: 3]
+    <h1>Kenneth's Trading Drawdown Protocol</h1>
+    <p class="subtitle">Versie 2.0 April 2026 | Kraken Pro | Strategy: 5min reversal POI sweep</p>
+
+    <div class="status-card">
+        <h3>HUIDIGE STATUS: RODE ZONE</h3>
+        <p>Drawdown: <span class="highlight">~89%</span> | Risk per trade: <span class="highlight">1.0%</span></p>
+        <p><strong>Pad naar Geel:</strong> 5 trades volgens plan voltooien.</p>
     </div>
 
-    <h2>1. Drawdown Zones [cite: 4]</h2>
-    <p>Drawdown wordt berekend als percentage van equity-piek. Bij nieuwe equity-piek reset alles naar de Groene Zone. [cite: 5]</p>
-    
     <table>
         <thead>
             <tr>
                 <th>Zone</th>
                 <th>DD%</th>
-                <th>Regels</th>
-                <th>Risk/trade</th>
+                <th>Risk</th>
+                <th>Belangrijkste Regels</th>
             </tr>
         </thead>
         <tbody>
             <tr class="zone-groen">
-                <td>GROEN [cite: 6]</td>
-                <td>0-10% [cite: 6]</td>
-                <td>Normaal traden. 2 TPs (1.5R + 2.5R). A+ setups. Max 1 trade/dag. [cite: 6]</td>
-                <td>2.0% [cite: 6]</td>
+                <td>GROEN</td>
+                <td>0-10%</td>
+                <td>2.0%</td>
+                <td>Normaal traden. Max 1 trade/dag.</td>
             </tr>
             <tr class="zone-geel">
-                <td>GEEL [cite: 6]</td>
-                <td>10-25% [cite: 6]</td>
-                <td>Voorzichtig. Alleen A+ setups. Verplichte review voor volgende trade. Max 1 trade/dag. [cite: 6]</td>
-                <td>1.5% [cite: 6]</td>
+                <td>GEEL</td>
+                <td>10-25%</td>
+                <td>1.5%</td>
+                <td>A+ setups. Verplichte review.</td>
             </tr>
             <tr class="zone-rood">
-                <td>ROOD [cite: 6]</td>
-                <td>25-50% [cite: 6]</td>
-                <td>Defensief. Minimaal rating 3.5. Geen vrijdag/weekend. Verplichte review. Verplichte wekelijkse backtest. [cite: 6]</td>
-                <td>1.0% [cite: 6]</td>
+                <td>ROOD</td>
+                <td>25-50%</td>
+                <td>1.0%</td>
+                <td>Geen vrijdag/weekend. Wekelijkse backtest.</td>
             </tr>
             <tr class="zone-noodstop">
-                <td>NOODSTOP [cite: 6]</td>
-                <td>50%+ [cite: 6]</td>
-                <td>Minimale risk. Review laatste 10 trades + opschrijven verbeterpunten voor volgende trade. Bewuste reset. [cite: 6]</td>
-                <td>0.5% [cite: 6]</td>
+                <td>NOODSTOP</td>
+                <td>50%+</td>
+                <td>0.5%</td>
+                <td>Review laatste 10 trades. Bewuste reset.</td>
             </tr>
         </tbody>
     </table>
 
-    <h2>2. Opschaling Regels [cite: 7]</h2>
+    <h3>Trade Executie (Altijd)</h3>
     <ul>
-        <li><strong>Nieuwe piek:</strong> Direct terug naar Groene Zone (2.0% risk). [cite: 8]</li>
-        <li><strong>Rood naar Geel:</strong> Minimaal 5 opeenvolgende trades volgens plan (resultaat ongeacht). [cite: 9]</li>
-        <li><strong>Geel naar Groen:</strong> Minimaal 3 winstgevende trades op rij OF nieuwe equity-piek. [cite: 10]</li>
-        <li><strong>Na Noodstop:</strong> Altijd herstart in Rode Zone (1.0%), nooit direct naar Geel of Groen. [cite: 11]</li>
-        <li><strong>Boven de piek (2.5%/3.0%):</strong> Geparkeerd tot 100+ trades op Kraken met stabiel resultaat. [cite: 12]</li>
+        <li><strong>Entry:</strong> Altijd limit order (Maker fee 0.020%)[cite: 14].</li>
+        <li><strong>Targets:</strong> TP1: 1.6R (50%) | TP2: 2.6R (50%)[cite: 27].</li>
+        <li><strong>Stop Loss:</strong> Primair via stop-limit. Noodrem market SL ~0.07% verder[cite: 15, 18].</li>
+        <li><strong>Review:</strong> Review ELKE trade voordat je de volgende neemt[cite: 21].</li>
     </ul>
-
-    <h2>3. Trade Executie Regels (Altijd Geldig) [cite: 13]</h2>
-    <ul>
-        <li><strong>Entry:</strong> Altijd limit order (maker fee 0.020%). [cite: 14]</li>
-        <li><strong>SL Trigger:</strong> Mark Price. Primair via stop-limit (reduce only). [cite: 15]</li>
-        <li><strong>Noodrem:</strong> Market SL op ~0.07-0.10% afstand voor extra veiligheid. [cite: 15, 18]</li>
-        <li><strong>TP1 (1.5R):</strong> 50% positie via limit. Na fill: SL naar BE (net boven entry) via limit. [cite: 16]</li>
-        <li><strong>TP2 (2.5R):</strong> Resterende 50% via limit. [cite: 19]</li>
-        <li><strong>Set and Forget:</strong> Orders niet aanpassen. Positie niet bekijken na entry. [cite: 20]</li>
-        <li><strong>Review:</strong> Iedere trade analyseren VOORDAT de volgende wordt genomen. [cite: 21]</li>
-    </ul>
-
-    <h2>4. Huidige Status [cite: 22]</h2>
-    <table class="status-table">
-        <tr>
-            <td>Equity piek (cum P&L)</td>
-            <td>$561.24 (17 feb 2026) [cite: 23]</td>
-        </tr>
-        <tr>
-            <td>Huidige drawdown</td>
-            <td class="highlight">~89% van piek [cite: 23]</td>
-        </tr>
-        <tr>
-            <td>Huidige zone</td>
-            <td class="zone-rood">Herstart in ROOD (1.0% risk) na NOODSTOP [cite: 23]</td>
-        </tr>
-        <tr>
-            <td>Huidig risk per trade</td>
-            <td>1.0% [cite: 24]</td>
-        </tr>
-        <tr>
-            <td>Pad naar Geel</td>
-            <td>5 trades volgens plan vanuit Rode Zone [cite: 24]</td>
-        </tr>
-    </table>
-
-    <h2>5. Fee-bewuste R:R (Kraken Pro) [cite: 25]</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Scenario</th>
-                <th>Fees (Roundtrip) [cite: 27]</th>
-                <th>Target Richtlijn [cite: 27]</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Win (Limit + Limit)</td>
-                <td>0.040% [cite: 27]</td>
-                <td>TP1: 1.6R | TP2: 2.6R [cite: 27]</td>
-            </tr>
-            <tr>
-                <td>Loss (Limit + Market SL)</td>
-                <td>0.070% [cite: 27]</td>
-                <td>SL op -1R (netto ~1.07R) [cite: 27]</td>
-            </tr>
-            <tr>
-                <td>BE Stop (Limit + Limit BE)</td>
-                <td>0.040% [cite: 27]</td>
-                <td>Besparing vs market: ~$1.50/trade [cite: 27]</td>
-            </tr>
-        </tbody>
-    </table>
 </div>
 
 </body>
